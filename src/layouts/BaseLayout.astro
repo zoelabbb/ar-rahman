@@ -1,6 +1,6 @@
 ---
 const { title } = Astro.props;
-import Analytics from '@vercel/analytics/astro'
+import Analytics from '@vercel/analytics/astro';
 ---
 <!DOCTYPE html>
 <html lang="id">
@@ -13,15 +13,24 @@ import Analytics from '@vercel/analytics/astro'
   <meta name="author" content="Alif Ryuu Bagus Ramadhan" />
   <style>
     .active {
-      color: #D4AF37; /* Warna merah untuk menu yang aktif */
+      color: #D4AF37; /* Warna emas untuk menu yang aktif */
     }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
   <header class="bg-primary text-white py-4 shadow-md">
     <nav class="container mx-auto flex justify-between items-center px-4">
-      <a href="#" class="text-xl font-bold">Masjid Ar-Rahman</a>
-      <div class="space-x-6">
+      <a href="/" class="text-xl font-bold">Masjid Ar-Rahman</a>
+
+      <!-- Hamburger Menu (Mobile) -->
+      <button id="hamburger" class="hamburger md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+
+      <!-- Nav Links -->
+      <div id="nav-links" class="hidden md:flex md:space-x-6">
         <a href="/" id="home" class="hover:text-secondary">Home</a>
         <a href="/donate" id="donate" class="hover:text-secondary">Donasi</a>
         <a href="/prayer" id="prayer" class="hover:text-secondary">Jadwal Sholat</a>
@@ -29,6 +38,17 @@ import Analytics from '@vercel/analytics/astro'
         <a href="/events" id="events" class="hover:text-secondary">Mading Acara</a>
       </div>
     </nav>
+
+    <!-- Mobile Menu (Dropdown) -->
+    <div id="mobile-menu" class="md:hidden hidden mt-4 transform transition-all duration-300 ease-in-out">
+      <div class="flex flex-col space-y-4 px-4">
+        <a href="/" id="mobile-home" class="hover:text-secondary">Home</a>
+        <a href="/donate" id="mobile-donate" class="hover:text-secondary">Donasi</a>
+        <a href="/prayer" id="mobile-prayer" class="hover:text-secondary">Jadwal Sholat</a>
+        <a href="/about" id="mobile-about" class="hover:text-secondary">About</a>
+        <a href="/events" id="mobile-events" class="hover:text-secondary">Mading Acara</a>
+      </div>
+    </div>
   </header>
   <main>
     <Analytics />
@@ -51,12 +71,22 @@ import Analytics from '@vercel/analytics/astro'
   <script>
     // JavaScript untuk menambahkan kelas 'active' ke menu yang sesuai
     const currentPath = window.location.pathname;
-    const menuItems = document.querySelectorAll('nav a');
+    const menuItems = document.querySelectorAll('#nav-links a, #mobile-menu a');
     menuItems.forEach(item => {
       if (item.getAttribute('href') === currentPath) {
         item.classList.add('active');
       }
     });
+
+    // JavaScript untuk toggle hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
   </script>
 </body>
 </html>
