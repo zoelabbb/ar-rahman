@@ -66,7 +66,7 @@ GET https://api.aladhan.com/v1/timingsByCity?city={city}&country=Indonesia&metho
 ## 📌 Todo List
 
 - [x] Tambah fitur lokasi otomatis.
-- [] Implementasi payment gateaway
+- [ ] Implementasi payment gateaway
 - [ ] Tambah notifikasi untuk waktu sholat.
 - [ ] Memperbaiki UI agar lebih interaktif.
 
