@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Form Donasi">
+  <!-- Hero Section -->
+  <section class="relative h-[300px] flex items-center justify-center text-white">
+    <img
+      src="https://picsum.photos/id/110/5000/3333"
+      alt="Masjid"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="relative text-center">
+      <h1 class="text-4xl font-bold mb-4">Donasi untuk Masjid Ar-Rahman</h1>
+      <p class="text-lg">Bantu kami membangun dan memelihara masjid.</p>
+    </div>
+  </section>
+
+  <!-- Form Donasi Section -->
+  <section class="container mx-auto py-16 px-4">
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-primary mb-6">Form Donasi - Operasional Masjid</h2>
+      <form class="space-y-6">
+        <!-- Nama Donatur -->
+        <div>
+          <label for="name" class="block text-gray-700 font-medium mb-2">Nama Donatur</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Masukkan nama Anda"
+            required
+          />
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Masukkan email Anda"
+            required
+          />
+        </div>
+
+        <!-- Nominal Donasi -->
+        <div>
+          <label for="amount" class="block text-gray-700 font-medium mb-2">Nominal Donasi</label>
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Masukkan nominal donasi"
+            required
+          />
+        </div>
+
+        <!-- Metode Pembayaran -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Metode Pembayaran</label>
+          <div class="space-y-2">
+            <label class="flex items-center">
+              <input type="radio" name="payment" value="paypal" class="mr-2">
+              <span>PayPal</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="payment" value="bank" class="mr-2">
+              <span>Transfer Bank</span>
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="payment" value="other" class="mr-2">
+              <span>Lainnya</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Tombol Submit -->
+        <div>
+          <button
+            type="submit"
+            class="w-full bg-secondary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition duration-300"
+          >
+            Donasi Sekarang
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
