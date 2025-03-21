@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Ambil slug dari URL
+const { slug } = Astro.params;
+
+// Data kegiatan (contoh sederhana)
+const kegiatan = {
+  slug: "kajian-rutin",
+  title: "Kajian Rutin",
+  description: "Kajian rutin setiap Jumat bersama Ust. Ahmad.",
+  image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  detail: `
+    <p class="mb-4">Kajian rutin ini diadakan setiap Jumat pukul 18:00 - 20:00 WIB di Masjid Ar-Rahman. Kajian ini dipimpin oleh Ust. Ahmad dengan tema yang berbeda setiap minggunya.</p>
+    <p class="mb-4">Tujuan dari kajian ini adalah untuk meningkatkan pemahaman agama dan keimanan jamaah. Kajian ini terbuka untuk umum dan tidak dipungut biaya.</p>
+    <p class="mb-4">Materi kajian meliputi:</p>
+    <ul class="list-disc list-inside mb-4">
+      <li>Tafsir Al-Quran</li>
+      <li>Hadits Nabi</li>
+      <li>Fiqh Ibadah</li>
+    </ul>
+    <p class="mb-4">Kami mengundang seluruh jamaah untuk hadir dan mengikuti kajian ini. Mari bersama-sama meningkatkan ilmu dan keimanan kita.</p>
+  `,
+};
+---
+
+<BaseLayout title={kegiatan.title}>
+  <!-- Hero Section -->
+  <section class="relative h-[300px] flex items-center justify-center text-white">
+    <img
+      src={kegiatan.image}
+      alt={kegiatan.title}
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="relative text-center">
+      <h1 class="text-4xl font-bold mb-4">{kegiatan.title}</h1>
+      <p class="text-lg">{kegiatan.description}</p>
+    </div>
+  </section>
+
+  <!-- Detail Kegiatan Section -->
+  <section class="container mx-auto py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-primary mb-8">Detail Kegiatan</h2>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="prose" set:html={kegiatan.detail}></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

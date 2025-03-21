@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Ambil slug dari URL
+const { slug } = Astro.params;
+
+// Data kegiatan (contoh sederhana)
+const kegiatan = {
+    slug: "sholat-jamaah-5-waktu",
+    title: "Sholat Jamaah 5 Waktu",
+    description: "Sholat berjamaah lima waktu di Masjid Ar-Rahman.",
+    image: "https://picsum.photos/id/1080/800/600",
+    detail: `
+        <p class="mb-4">Sholat berjamaah lima waktu diadakan setiap hari di Masjid Ar-Rahman. Berikut adalah jadwal sholat berjamaah:</p>
+        <ul class="list-disc list-inside mb-4">
+            <li>Subuh: 04:30 WIB</li>
+            <li>Dzuhur: 12:00 WIB</li>
+            <li>Ashar: 15:30 WIB</li>
+            <li>Maghrib: 18:00 WIB</li>
+            <li>Isya: 19:30 WIB</li>
+        </ul>
+        <p class="mb-4">Kami mengundang seluruh jamaah untuk hadir dan melaksanakan sholat berjamaah di masjid. Sholat berjamaah memiliki banyak keutamaan dan pahala yang besar.</p>
+    `,
+};
+---
+
+<BaseLayout title={kegiatan.title}>
+    <!-- Hero Section -->
+    <section class="relative h-[300px] flex items-center justify-center text-white">
+        <img
+            src={kegiatan.image}
+            alt={kegiatan.title}
+            class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="relative text-center">
+            <h1 class="text-4xl font-bold mb-4">{kegiatan.title}</h1>
+            <p class="text-lg">{kegiatan.description}</p>
+        </div>
+    </section>
+
+    <!-- Detail Kegiatan Section -->
+    <section class="container mx-auto py-16 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-primary mb-8">Detail Kegiatan</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="prose" set:html={kegiatan.detail}></div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

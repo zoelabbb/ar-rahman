@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Ambil data kegiatan berdasarkan slug (contoh sederhana)
+const kegiatan = {
+  slug: "pembangunan-parkiran",
+  title: "Pembangunan Parkiran Masjid",
+  description: "Bantu kami membangun parkiran yang lebih luas dan nyaman untuk jamaah masjid.",
+  image: "https://picsum.photos/id/1080/800/600",
+  progress: 65,
+  dateline: "31 Desember 2023",
+  detail: `
+    <p class="mb-4">Masjid Ar-Rahman saat ini membutuhkan perluasan area parkir untuk menampung lebih banyak kendaraan jamaah. Dengan semakin meningkatnya jumlah jamaah, terutama pada hari Jumat dan hari raya, parkiran yang ada sudah tidak mencukupi.</p>
+    <p class="mb-4">Program ini bertujuan untuk membangun area parkir baru yang dapat menampung hingga 100 kendaraan. Dana yang terkumpul akan digunakan untuk:</p>
+    <ul class="list-disc list-inside mb-4">
+      <li>Pembelian material bangunan</li>
+      <li>Pengerjaan konstruksi</li>
+      <li>Pemasangan lampu dan sistem drainase</li>
+    </ul>
+    <p class="mb-4">Kami mengajak seluruh jamaah dan masyarakat untuk berpartisipasi dalam program ini. Setiap donasi, besar atau kecil, sangat berarti bagi kami.</p>
+  `,
+  gallery: [
+    "https://picsum.photos/id/1080/800/600",
+    "https://picsum.photos/id/1081/800/600",
+    "https://picsum.photos/id/1082/800/600",
+  ],
+};
+---
+
+<BaseLayout title={kegiatan.title}>
+  <!-- Hero Section -->
+  <section class="relative h-[300px] flex items-center justify-center text-white">
+    <img
+      src={kegiatan.image}
+      alt={kegiatan.title}
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="relative text-center">
+      <h1 class="text-4xl font-bold mb-4">{kegiatan.title}</h1>
+      <p class="text-lg">{kegiatan.description}</p>
+    </div>
+  </section>
+
+  <!-- Detail Kegiatan Section -->
+  <section class="container mx-auto py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-primary mb-8">Detail Kegiatan</h2>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="prose" set:html={kegiatan.detail}></div>
+
+        <!-- Progress Donasi -->
+        <div class="mt-8">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm text-gray-600">Terkumpul</span>
+            <span class="text-sm text-gray-600">{kegiatan.progress}%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div class="bg-secondary h-2 rounded-full" style={`width: ${kegiatan.progress}%`}></div>
+          </div>
+          <p class="text-sm text-gray-600 mt-2">Batas Donasi: {kegiatan.dateline}</p>
+        </div>
+
+        <!-- Tombol Donasi -->
+        <div class="mt-8">
+          <button
+            class="w-full bg-primary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition duration-300"
+          >
+            Donasi Sekarang
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeri Section (Opsional) -->
+  <section class="container mx-auto py-16 px-4">
+    <h2 class="text-3xl font-bold text-primary text-center mb-8">Galeri Kegiatan</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {kegiatan.gallery.map((image, index) => (
+        <Fragment key={index}>
+          <div>
+            <img
+              src={image}
+              alt={`Galeri ${index + 1}`}
+              class="w-full h-48 object-cover rounded-lg shadow-lg"
+            />
+          </div>
+        </Fragment>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
