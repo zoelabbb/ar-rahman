@@ -1,0 +1,51 @@
+---
+const { title } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <style>
+    .active {
+      color: #D4AF37; /* Warna merah untuk menu yang aktif */
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-primary text-white py-4 shadow-md">
+    <nav class="container mx-auto flex justify-between items-center px-4">
+      <a href="#" class="text-xl font-bold">Masjid Ar-Rahman</a>
+      <div class="space-x-6">
+        <a href="/" id="home" class="hover:text-secondary">Home</a>
+        <a href="/donate" id="donate" class="hover:text-secondary">Donasi</a>
+        <a href="/prayer" id="prayer" class="hover:text-secondary">Jadwal Sholat</a>
+        <a href="/about" id="about" class="hover:text-secondary">About</a>
+        <a href="/events" id="events" class="hover:text-secondary">Mading Acara</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <slot /> <!-- Konten halaman akan di-render di sini -->
+  </main>
+  <footer class="bg-primary text-white text-center py-8 mt-16">
+    <p>&copy; 2023 Masjid Ar-Rahman. All rights reserved.</p>
+    <div class="mt-4 space-x-4">
+      <a href="#" class="hover:text-secondary">Facebook</a>
+      <a href="#" class="hover:text-secondary">Twitter</a>
+      <a href="#" class="hover:text-secondary">Instagram</a>
+    </div>
+  </footer>
+  <script>
+    // JavaScript untuk menambahkan kelas 'active' ke menu yang sesuai
+    const currentPath = window.location.pathname;
+    const menuItems = document.querySelectorAll('nav a');
+    menuItems.forEach(item => {
+      if (item.getAttribute('href') === currentPath) {
+        item.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
